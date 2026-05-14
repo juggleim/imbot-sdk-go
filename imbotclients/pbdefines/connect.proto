@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+option go_package = "imbotclients/pbdefines/pbobjs";
+
+message ConnectMsgBody{
+    string protoId = 1;
+    string sdkVersion = 2; //sdk 版本
+    string appkey = 3;
+    string token = 4;
+}
+
+message ConnectAckMsgBody{
+    int32 code = 1;
+    string userId = 2;
+    string session = 3;
+    int64 timestamp = 4;
+    string ext = 5;
+}
+
+message DisconnectMsgBody{
+    int32 code = 1;
+    int64 timestamp = 2;
+    string ext = 3;
+}
+
+message PublishMsgBody{
+    int32 index = 1;
+    string topic = 2;
+    string targetId = 3;
+    int64 timestamp = 4;
+    bytes data = 5;
+}
+
+message PublishAckMsgBody{
+    int32 index = 1;
+    int32 code = 2;
+    string msgId = 3;
+    int64 timestamp = 4;
+    int64 msgSeqNo = 5;
+    int32 memberCount = 6;
+    string clientMsgId = 7;
+    SimplifiedDownMsg modifiedMsg = 8;
+}
+
+message SimplifiedDownMsg{
+    string msgType = 3;
+    bytes msgContent = 7;
+}
+
+message QueryMsgBody{
+    int32 index = 1;
+    string topic = 2;
+    string targetId = 3;
+    int64 timestamp = 4;
+    bytes data = 5;
+}
+
+message QueryAckMsgBody{
+    int32 index = 1;
+    int32 code = 2;
+    int64 timestamp = 3;
+    bytes data = 4;
+}
+
+message QueryConfirmMsgBody{
+    int32 index = 1;
+}
+
+message ImWebsocketMsg {
+    int32 version = 1;
+    int32 cmd = 2;
+    int32 qos  = 3;
+    bytes payload = 4;
+    oneof testof{
+        ConnectMsgBody connectMsgBody = 11;
+        ConnectAckMsgBody ConnectAckMsgBody = 12;
+        DisconnectMsgBody disconnectMsgBody = 13;
+        PublishMsgBody publishMsgBody = 14;
+        PublishAckMsgBody pubAckMsgBody = 15;
+        QueryMsgBody qryMsgBody = 16;
+        QueryAckMsgBody qryAckMsgBody = 17;
+        QueryConfirmMsgBody qryConfirmMsgBody = 18;
+    }
+}
+

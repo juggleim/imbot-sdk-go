@@ -1,0 +1,164 @@
+syntax = "proto3";
+
+option go_package = "imbotclients/pbdefines/pbobjs";
+import "imbotclients/pbdefines/appmessages.proto";
+
+message RtcRoomReq{
+    RtcRoomType roomType = 1;
+    string roomId = 2;
+    RtcMember joinMember = 3;
+    RtcChannel rtcChannel = 4;
+    RtcMediaType rtcMediaType = 5;
+    string ext = 6;
+    ConverIndex attachedConver = 7;
+}
+
+message RtcRoom{
+    RtcRoomType roomType = 1;
+    string roomId = 2;
+    UserInfo owner = 3;
+    RtcChannel rtcChannel = 4;
+    RtcMediaType rtcMediaType = 5;
+    string ext = 6;
+    RtcAuth auth= 7;
+    ConverIndex attachedConver = 8;
+    
+    repeated RtcMember members = 51;
+}
+
+enum RtcChannel {
+    Zego = 0;
+    LivekitRtc = 1;
+    Agora = 2;
+    
+    JuggleRtc = 11;
+}
+
+enum RtcRoomType{
+    OneOne = 0;
+    OneMore = 1;
+}
+
+message RtcMember{
+    UserInfo member = 1;
+    RtcState rtcState = 2;
+    int64 callTime = 3;
+    int64 connectTime = 4;
+    int64 hangupTime = 5;
+    UserInfo inviter = 6;
+}
+
+message MemberState{
+    string roomId = 1;
+    RtcRoomType roomType = 2;
+    string memberId = 3;
+    string deviceId = 4;
+    RtcState rtcState = 5;
+}
+
+message SyncMemberStateReq{
+    bool isDelete = 1;
+    MemberState member = 2;
+}
+
+enum RtcState{
+    RtcStateDefault = 0;
+    RtcIncoming = 1;
+    RtcOutgoing = 2;
+    RtcConnecting = 3;
+    RtcConnected = 4;
+}
+
+message RtcRoomEvent{
+    RtcRoomEventType roomEventType = 1;
+    repeated RtcMember members = 2;
+    RtcRoom room = 3;
+    RtcRoomQuitReason reason = 4;
+    int64 eventTime = 5;
+}
+
+enum RtcRoomEventType{
+    DefaultRtcRoomEvent = 0;
+    RtcJoin = 1;
+    RtcQuit = 2;
+    RtcDestroy = 3;
+    RtcStateChg = 4;
+}
+
+enum RtcRoomQuitReason{
+    Active = 0;
+    CallTimeout = 1;
+    PingTimeout = 2;
+}
+
+enum RtcMediaType{
+    RtcAudio = 0;
+    RtcVideo = 1;
+}
+
+message RtcInviteReq{
+    repeated string targetIds = 1;
+    RtcRoomType roomType = 2;
+    string roomId = 3;
+    RtcChannel rtcChannel = 4;
+    RtcMediaType rtcMediaType = 5;
+    string ext = 6;
+    ConverIndex attachedConver = 7;
+}
+
+message RtcMemberRooms{
+    repeated RtcMemberRoom rooms = 1;
+}
+
+message RtcMemberRoom{
+    RtcRoomType roomType = 1;
+    string roomId = 2;
+    UserInfo owner = 3;
+    RtcState rtcState = 4;
+    RtcChannel rtcChannel = 5;
+    string deviceId = 6;
+    RtcMediaType rtcMediaType = 7;
+}
+
+message RtcAuth{
+    ZegoAuth zegoAuth = 1;
+    LivekitRtcAuth livekitRtcAuth = 2;
+    AgoraAuth agoraAuth = 3;
+
+    JuggleRtcAuth juggleRtcAuth = 11;
+}
+
+message ZegoAuth{
+    string token = 1;
+}
+
+message JuggleRtcAuth{
+    string token = 1;
+}
+
+message AgoraAuth{
+    string token = 1;
+}
+
+message LivekitRtcAuth{
+    string token = 1;
+    string serviceUrl = 2;
+}
+
+message RtcInviteEvent{
+    InviteType inviteType = 1;
+    UserInfo user = 2;
+    RtcRoom room = 3;
+    repeated UserInfo targetUsers = 4;
+    int64 eventTime = 5;
+}
+
+enum InviteType{
+    RtcInvite = 0;
+    RtcAccept = 1;
+    RtcHangup = 2;
+}
+
+message RtcAnswer{
+    string roomId = 1;
+}
