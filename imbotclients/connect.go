@@ -30,6 +30,7 @@ func (client *ImBotClient) Connect(token string) (utils.ClientErrorCode, *pbobjs
 		SdkVersion: "1.0.0",
 		Appkey:     client.AppKey,
 		Token:      client.Token,
+		Platform:   client.Platform,
 	}
 
 	u, err := client.wsURL()

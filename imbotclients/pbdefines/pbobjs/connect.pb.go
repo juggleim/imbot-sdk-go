@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.33.0
 // 	protoc        v3.5.0
-// source: connect.proto
+// source: imbotclients/pbdefines/connect.proto
 
 package pbobjs
 
@@ -29,12 +29,14 @@ type ConnectMsgBody struct {
 	SdkVersion string `protobuf:"bytes,2,opt,name=sdkVersion,proto3" json:"sdkVersion,omitempty"` //sdk 版本
 	Appkey     string `protobuf:"bytes,3,opt,name=appkey,proto3" json:"appkey,omitempty"`
 	Token      string `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
+	DeviceId   string `protobuf:"bytes,5,opt,name=deviceId,proto3" json:"deviceId,omitempty"`
+	Platform   string `protobuf:"bytes,6,opt,name=platform,proto3" json:"platform,omitempty"` //iOS/Android/iPad
 }
 
 func (x *ConnectMsgBody) Reset() {
 	*x = ConnectMsgBody{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[0]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -47,7 +49,7 @@ func (x *ConnectMsgBody) String() string {
 func (*ConnectMsgBody) ProtoMessage() {}
 
 func (x *ConnectMsgBody) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[0]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +62,7 @@ func (x *ConnectMsgBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnectMsgBody.ProtoReflect.Descriptor instead.
 func (*ConnectMsgBody) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{0}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ConnectMsgBody) GetProtoId() string {
@@ -91,6 +93,20 @@ func (x *ConnectMsgBody) GetToken() string {
 	return ""
 }
 
+func (x *ConnectMsgBody) GetDeviceId() string {
+	if x != nil {
+		return x.DeviceId
+	}
+	return ""
+}
+
+func (x *ConnectMsgBody) GetPlatform() string {
+	if x != nil {
+		return x.Platform
+	}
+	return ""
+}
+
 type ConnectAckMsgBody struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -106,7 +122,7 @@ type ConnectAckMsgBody struct {
 func (x *ConnectAckMsgBody) Reset() {
 	*x = ConnectAckMsgBody{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[1]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -119,7 +135,7 @@ func (x *ConnectAckMsgBody) String() string {
 func (*ConnectAckMsgBody) ProtoMessage() {}
 
 func (x *ConnectAckMsgBody) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[1]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -132,7 +148,7 @@ func (x *ConnectAckMsgBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnectAckMsgBody.ProtoReflect.Descriptor instead.
 func (*ConnectAckMsgBody) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{1}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ConnectAckMsgBody) GetCode() int32 {
@@ -183,7 +199,7 @@ type DisconnectMsgBody struct {
 func (x *DisconnectMsgBody) Reset() {
 	*x = DisconnectMsgBody{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[2]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -196,7 +212,7 @@ func (x *DisconnectMsgBody) String() string {
 func (*DisconnectMsgBody) ProtoMessage() {}
 
 func (x *DisconnectMsgBody) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[2]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -209,7 +225,7 @@ func (x *DisconnectMsgBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DisconnectMsgBody.ProtoReflect.Descriptor instead.
 func (*DisconnectMsgBody) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{2}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *DisconnectMsgBody) GetCode() int32 {
@@ -248,7 +264,7 @@ type PublishMsgBody struct {
 func (x *PublishMsgBody) Reset() {
 	*x = PublishMsgBody{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[3]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -261,7 +277,7 @@ func (x *PublishMsgBody) String() string {
 func (*PublishMsgBody) ProtoMessage() {}
 
 func (x *PublishMsgBody) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[3]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -274,7 +290,7 @@ func (x *PublishMsgBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishMsgBody.ProtoReflect.Descriptor instead.
 func (*PublishMsgBody) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{3}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *PublishMsgBody) GetIndex() int32 {
@@ -330,7 +346,7 @@ type PublishAckMsgBody struct {
 func (x *PublishAckMsgBody) Reset() {
 	*x = PublishAckMsgBody{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[4]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -343,7 +359,7 @@ func (x *PublishAckMsgBody) String() string {
 func (*PublishAckMsgBody) ProtoMessage() {}
 
 func (x *PublishAckMsgBody) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[4]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -356,7 +372,7 @@ func (x *PublishAckMsgBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishAckMsgBody.ProtoReflect.Descriptor instead.
 func (*PublishAckMsgBody) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{4}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PublishAckMsgBody) GetIndex() int32 {
@@ -427,7 +443,7 @@ type SimplifiedDownMsg struct {
 func (x *SimplifiedDownMsg) Reset() {
 	*x = SimplifiedDownMsg{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[5]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -440,7 +456,7 @@ func (x *SimplifiedDownMsg) String() string {
 func (*SimplifiedDownMsg) ProtoMessage() {}
 
 func (x *SimplifiedDownMsg) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[5]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -453,7 +469,7 @@ func (x *SimplifiedDownMsg) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimplifiedDownMsg.ProtoReflect.Descriptor instead.
 func (*SimplifiedDownMsg) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{5}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SimplifiedDownMsg) GetMsgType() string {
@@ -485,7 +501,7 @@ type QueryMsgBody struct {
 func (x *QueryMsgBody) Reset() {
 	*x = QueryMsgBody{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[6]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -498,7 +514,7 @@ func (x *QueryMsgBody) String() string {
 func (*QueryMsgBody) ProtoMessage() {}
 
 func (x *QueryMsgBody) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[6]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -511,7 +527,7 @@ func (x *QueryMsgBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryMsgBody.ProtoReflect.Descriptor instead.
 func (*QueryMsgBody) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{6}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *QueryMsgBody) GetIndex() int32 {
@@ -563,7 +579,7 @@ type QueryAckMsgBody struct {
 func (x *QueryAckMsgBody) Reset() {
 	*x = QueryAckMsgBody{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[7]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -576,7 +592,7 @@ func (x *QueryAckMsgBody) String() string {
 func (*QueryAckMsgBody) ProtoMessage() {}
 
 func (x *QueryAckMsgBody) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[7]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -589,7 +605,7 @@ func (x *QueryAckMsgBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryAckMsgBody.ProtoReflect.Descriptor instead.
 func (*QueryAckMsgBody) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{7}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *QueryAckMsgBody) GetIndex() int32 {
@@ -631,7 +647,7 @@ type QueryConfirmMsgBody struct {
 func (x *QueryConfirmMsgBody) Reset() {
 	*x = QueryConfirmMsgBody{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[8]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -644,7 +660,7 @@ func (x *QueryConfirmMsgBody) String() string {
 func (*QueryConfirmMsgBody) ProtoMessage() {}
 
 func (x *QueryConfirmMsgBody) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[8]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -657,7 +673,7 @@ func (x *QueryConfirmMsgBody) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryConfirmMsgBody.ProtoReflect.Descriptor instead.
 func (*QueryConfirmMsgBody) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{8}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *QueryConfirmMsgBody) GetIndex() int32 {
@@ -692,7 +708,7 @@ type ImWebsocketMsg struct {
 func (x *ImWebsocketMsg) Reset() {
 	*x = ImWebsocketMsg{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_connect_proto_msgTypes[9]
+		mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -705,7 +721,7 @@ func (x *ImWebsocketMsg) String() string {
 func (*ImWebsocketMsg) ProtoMessage() {}
 
 func (x *ImWebsocketMsg) ProtoReflect() protoreflect.Message {
-	mi := &file_connect_proto_msgTypes[9]
+	mi := &file_imbotclients_pbdefines_connect_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -718,7 +734,7 @@ func (x *ImWebsocketMsg) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImWebsocketMsg.ProtoReflect.Descriptor instead.
 func (*ImWebsocketMsg) Descriptor() ([]byte, []int) {
-	return file_connect_proto_rawDescGZIP(), []int{9}
+	return file_imbotclients_pbdefines_connect_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ImWebsocketMsg) GetVersion() int32 {
@@ -864,18 +880,23 @@ func (*ImWebsocketMsg_QryAckMsgBody) isImWebsocketMsg_Testof() {}
 
 func (*ImWebsocketMsg_QryConfirmMsgBody) isImWebsocketMsg_Testof() {}
 
-var File_connect_proto protoreflect.FileDescriptor
+var File_imbotclients_pbdefines_connect_proto protoreflect.FileDescriptor
 
-var file_connect_proto_rawDesc = []byte{
-	0x0a, 0x0d, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22,
-	0x78, 0x0a, 0x0e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x4d, 0x73, 0x67, 0x42, 0x6f, 0x64,
-	0x79, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x73,
-	0x64, 0x6b, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x0a, 0x73, 0x64, 0x6b, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x16, 0x0a, 0x06, 0x61,
-	0x70, 0x70, 0x6b, 0x65, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x70, 0x70,
-	0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x04, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x89, 0x01, 0x0a, 0x11, 0x43, 0x6f,
+var file_imbotclients_pbdefines_connect_proto_rawDesc = []byte{
+	0x0a, 0x24, 0x69, 0x6d, 0x62, 0x6f, 0x74, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x70,
+	0x62, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x73, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb0, 0x01, 0x0a, 0x0e, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x4d, 0x73, 0x67, 0x42, 0x6f, 0x64, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x64, 0x6b, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f,
+	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x64, 0x6b, 0x56, 0x65, 0x72, 0x73,
+	0x69, 0x6f, 0x6e, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x70, 0x70, 0x6b, 0x65, 0x79, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x70, 0x70, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x74,
+	0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65,
+	0x6e, 0x12, 0x1a, 0x0a, 0x08, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x49, 0x64, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x49, 0x64, 0x12, 0x1a, 0x0a,
+	0x08, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x22, 0x89, 0x01, 0x0a, 0x11, 0x43, 0x6f,
 	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x41, 0x63, 0x6b, 0x4d, 0x73, 0x67, 0x42, 0x6f, 0x64, 0x79, 0x12,
 	0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63,
 	0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20,
@@ -976,24 +997,26 @@ var file_connect_proto_rawDesc = []byte{
 	0x18, 0x12, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x43, 0x6f,
 	0x6e, 0x66, 0x69, 0x72, 0x6d, 0x4d, 0x73, 0x67, 0x42, 0x6f, 0x64, 0x79, 0x48, 0x00, 0x52, 0x11,
 	0x71, 0x72, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x4d, 0x73, 0x67, 0x42, 0x6f, 0x64,
-	0x79, 0x42, 0x08, 0x0a, 0x06, 0x74, 0x65, 0x73, 0x74, 0x6f, 0x66, 0x42, 0x0a, 0x5a, 0x08, 0x2e,
-	0x2f, 0x70, 0x62, 0x6f, 0x62, 0x6a, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x79, 0x42, 0x08, 0x0a, 0x06, 0x74, 0x65, 0x73, 0x74, 0x6f, 0x66, 0x42, 0x1f, 0x5a, 0x1d, 0x69,
+	0x6d, 0x62, 0x6f, 0x74, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x70, 0x62, 0x64, 0x65,
+	0x66, 0x69, 0x6e, 0x65, 0x73, 0x2f, 0x70, 0x62, 0x6f, 0x62, 0x6a, 0x73, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_connect_proto_rawDescOnce sync.Once
-	file_connect_proto_rawDescData = file_connect_proto_rawDesc
+	file_imbotclients_pbdefines_connect_proto_rawDescOnce sync.Once
+	file_imbotclients_pbdefines_connect_proto_rawDescData = file_imbotclients_pbdefines_connect_proto_rawDesc
 )
 
-func file_connect_proto_rawDescGZIP() []byte {
-	file_connect_proto_rawDescOnce.Do(func() {
-		file_connect_proto_rawDescData = protoimpl.X.CompressGZIP(file_connect_proto_rawDescData)
+func file_imbotclients_pbdefines_connect_proto_rawDescGZIP() []byte {
+	file_imbotclients_pbdefines_connect_proto_rawDescOnce.Do(func() {
+		file_imbotclients_pbdefines_connect_proto_rawDescData = protoimpl.X.CompressGZIP(file_imbotclients_pbdefines_connect_proto_rawDescData)
 	})
-	return file_connect_proto_rawDescData
+	return file_imbotclients_pbdefines_connect_proto_rawDescData
 }
 
-var file_connect_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_connect_proto_goTypes = []interface{}{
+var file_imbotclients_pbdefines_connect_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_imbotclients_pbdefines_connect_proto_goTypes = []interface{}{
 	(*ConnectMsgBody)(nil),      // 0: ConnectMsgBody
 	(*ConnectAckMsgBody)(nil),   // 1: ConnectAckMsgBody
 	(*DisconnectMsgBody)(nil),   // 2: DisconnectMsgBody
@@ -1005,7 +1028,7 @@ var file_connect_proto_goTypes = []interface{}{
 	(*QueryConfirmMsgBody)(nil), // 8: QueryConfirmMsgBody
 	(*ImWebsocketMsg)(nil),      // 9: ImWebsocketMsg
 }
-var file_connect_proto_depIdxs = []int32{
+var file_imbotclients_pbdefines_connect_proto_depIdxs = []int32{
 	5, // 0: PublishAckMsgBody.modifiedMsg:type_name -> SimplifiedDownMsg
 	0, // 1: ImWebsocketMsg.connectMsgBody:type_name -> ConnectMsgBody
 	1, // 2: ImWebsocketMsg.ConnectAckMsgBody:type_name -> ConnectAckMsgBody
@@ -1022,13 +1045,13 @@ var file_connect_proto_depIdxs = []int32{
 	0, // [0:9] is the sub-list for field type_name
 }
 
-func init() { file_connect_proto_init() }
-func file_connect_proto_init() {
-	if File_connect_proto != nil {
+func init() { file_imbotclients_pbdefines_connect_proto_init() }
+func file_imbotclients_pbdefines_connect_proto_init() {
+	if File_imbotclients_pbdefines_connect_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_connect_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConnectMsgBody); i {
 			case 0:
 				return &v.state
@@ -1040,7 +1063,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ConnectAckMsgBody); i {
 			case 0:
 				return &v.state
@@ -1052,7 +1075,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DisconnectMsgBody); i {
 			case 0:
 				return &v.state
@@ -1064,7 +1087,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PublishMsgBody); i {
 			case 0:
 				return &v.state
@@ -1076,7 +1099,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PublishAckMsgBody); i {
 			case 0:
 				return &v.state
@@ -1088,7 +1111,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SimplifiedDownMsg); i {
 			case 0:
 				return &v.state
@@ -1100,7 +1123,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryMsgBody); i {
 			case 0:
 				return &v.state
@@ -1112,7 +1135,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryAckMsgBody); i {
 			case 0:
 				return &v.state
@@ -1124,7 +1147,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryConfirmMsgBody); i {
 			case 0:
 				return &v.state
@@ -1136,7 +1159,7 @@ func file_connect_proto_init() {
 				return nil
 			}
 		}
-		file_connect_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_imbotclients_pbdefines_connect_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ImWebsocketMsg); i {
 			case 0:
 				return &v.state
@@ -1149,7 +1172,7 @@ func file_connect_proto_init() {
 			}
 		}
 	}
-	file_connect_proto_msgTypes[9].OneofWrappers = []interface{}{
+	file_imbotclients_pbdefines_connect_proto_msgTypes[9].OneofWrappers = []interface{}{
 		(*ImWebsocketMsg_ConnectMsgBody)(nil),
 		(*ImWebsocketMsg_ConnectAckMsgBody)(nil),
 		(*ImWebsocketMsg_DisconnectMsgBody)(nil),
@@ -1163,18 +1186,18 @@ func file_connect_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_connect_proto_rawDesc,
+			RawDescriptor: file_imbotclients_pbdefines_connect_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_connect_proto_goTypes,
-		DependencyIndexes: file_connect_proto_depIdxs,
-		MessageInfos:      file_connect_proto_msgTypes,
+		GoTypes:           file_imbotclients_pbdefines_connect_proto_goTypes,
+		DependencyIndexes: file_imbotclients_pbdefines_connect_proto_depIdxs,
+		MessageInfos:      file_imbotclients_pbdefines_connect_proto_msgTypes,
 	}.Build()
-	File_connect_proto = out.File
-	file_connect_proto_rawDesc = nil
-	file_connect_proto_goTypes = nil
-	file_connect_proto_depIdxs = nil
+	File_imbotclients_pbdefines_connect_proto = out.File
+	file_imbotclients_pbdefines_connect_proto_rawDesc = nil
+	file_imbotclients_pbdefines_connect_proto_goTypes = nil
+	file_imbotclients_pbdefines_connect_proto_depIdxs = nil
 }

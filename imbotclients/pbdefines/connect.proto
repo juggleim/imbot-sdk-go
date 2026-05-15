@@ -7,6 +7,8 @@ message ConnectMsgBody{
     string sdkVersion = 2; //sdk 版本
     string appkey = 3;
     string token = 4;
+    string deviceId = 5;
+    string platform = 6;//iOS/Android/iPad
 }
 
 message ConnectAckMsgBody{
