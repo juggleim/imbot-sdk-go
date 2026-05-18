@@ -11,19 +11,12 @@ import (
 )
 
 const (
-// address        = "ws://127.0.0.1:9002"
-// appkey         = "appkey"
-// Token1  string = "CgZhcHBrZXkaICAvo1UH53CiwR/aurQXCDBpogz9OGlWbbWDpDsMJ4dn"
-// Token2  string = "CgZhcHBrZXkaIHyiKFX87ojypRsjRqk/IPYTkqTNEiuvvABITR/imPaH"
-// Token3  string = "CgZhcHBrZXkaIDIBXriAVM4RyD7VLFv8vrR1+efi6LycPMuKqbQ/oVdF"
-// Token4  string = "CgZhcHBrZXkaIKTH3MaZdkgLYMLsYpVmt/UT3jQkd2UgGX35LjN26ouz"
-// Token5  string = "CgZhcHBrZXkaINYLoPeDJyh0HuZdk3Vx+dNs5RBD2/McgZiDjjyXS2Pm"
+	address = "ws://127.0.0.1:9002"
+	appkey  = "appkey"
 )
 
 func main() {
-	address := "wss://ws.juggle.im"
-	appkey := "nwm6fxqt2aeebhb7"
-	token := "ChBud202ZnhxdDJhZWViaGI3GhCK-7Ic0Van0kxFd3Q9tAyF"
+	token := "CgZhcHBrZXkaIGvZMSW_6pEgEc_TCzR72mG6hWjgpR1WivvfEBH5jyOd"
 	client := imbotclients.NewImBotClient(address, appkey)
 	client.OnMessageCallBack = func(msg *pbobjs.DownMsg) {
 		fmt.Printf("received message: %+v\n", msg)
