@@ -26,12 +26,16 @@ go get github.com/juggleim/imbot-sdk-go
 ### 1. 创建客户端
 
 ```go
-client := imbotclients.NewImBotClient("ws://127.0.0.1:9002", "your-appkey")
+client := imbotclients.NewImBotClient("ws://127.0.0.1:9002", "your-appkey", imbotclients.TransportMode_WebSocket)
 ```
 
 说明：
 
+- 第三个参数 `mode` 指定通信方式：
+  - `TransportMode_WebSocket`：WebSocket 长连接（当前已实现）
+  - `TransportMode_HTTPWebhook`：HTTP 短连接 + Webhook 回调（尚未实现，调用 `Connect` 会返回 `ClientErrorCode_UnsupportedTransport`）
 - `address` 传基础地址即可，SDK 会自动拼接为 `ws://host/imbot` 或 `wss://host/imbot`
+- HTTP+Webhook 模式下需设置 `client.WebhookURL`，供 IM 服务回调推送消息
 - `Platform` 默认是 `Bot`
 - `AutoReconnect` 默认是 `true`
 
@@ -144,7 +148,7 @@ func main() {
 	token := "your-token"
 	targetUserID := "target-user-id"
 
-	client := imbotclients.NewImBotClient(address, appKey)
+	client := imbotclients.NewImBotClient(address, appKey, imbotclients.TransportMode_WebSocket)
 	client.AddConnectionStatusChangeListener(connListener{})
 	client.AddMessageListener(messageListener{})
 

@@ -17,7 +17,7 @@ const (
 
 func main() {
 	token := "CgZhcHBrZXkaIGvZMSW_6pEgEc_TCzR72mG6hWjgpR1WivvfEBH5jyOd"
-	client := imbotclients.NewImBotClient(address, appkey)
+	client := imbotclients.NewImBotClient(address, appkey, imbotclients.TransportMode_WebSocket)
 	client.OnMessageCallBack = func(msg *pbobjs.DownMsg) {
 		fmt.Printf("received message: %+v\n", msg)
 	}

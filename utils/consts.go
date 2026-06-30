@@ -22,6 +22,7 @@ const (
 	ClientErrorCode_ConnectClosed       ClientErrorCode = 20007
 	ClientErrorCode_InitEncryptorFailed ClientErrorCode = 20008
 	ClientErrorCode_NegotiateFailed     ClientErrorCode = 20009
+	ClientErrorCode_UnsupportedTransport ClientErrorCode = 20010
 
 	ClientErrorCode_SendTimeout ClientErrorCode = 21001
 
