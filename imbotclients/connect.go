@@ -16,9 +16,6 @@ type IConnectionStatusChangeListener interface {
 }
 
 func (client *ImBotClient) Connect(token string) (utils.ClientErrorCode, *pbobjs.ConnectAckMsgBody) {
-	if client.TransportMode != TransportMode_WebSocket {
-		return utils.ClientErrorCode_UnsupportedTransport, nil
-	}
 	if client.state != utils.State_Disconnect {
 		return utils.ClientErrorCode_ConnectExisted, nil
 	}

@@ -310,5 +310,5 @@ func conversationKey(conver *models.Conversation) string {
 	if conver == nil {
 		return ""
 	}
-	return fmt.Sprintf("%d:%s:%s", conver.ConversationType, conver.Conversation, conver.SubChannel)
+	return fmt.Sprintf("%d:%s:%s", conver.ConversationType, conver.ConversationId, conver.SubChannel)
 }

@@ -17,7 +17,7 @@ type ConversationInfo struct {
 }
 
 type Conversation struct {
-	Conversation     string
+	ConversationId   string
 	SubChannel       string
 	ConversationType pbobjs.ChannelType
 }

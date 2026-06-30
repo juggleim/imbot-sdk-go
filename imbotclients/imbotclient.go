@@ -37,24 +37,11 @@ const (
 	imErrorCodeConnectLogout = 10004
 )
 
-// TransportMode 定义 ImBotClient 与服务端的通信方式。
-type TransportMode int
-
-const (
-	// TransportMode_WebSocket 基于 WebSocket 的长连接模式。
-	TransportMode_WebSocket TransportMode = iota
-	// TransportMode_HTTPWebhook 基于 HTTP 短连接与 Webhook 回调的模式（尚未实现）。
-	TransportMode_HTTPWebhook
-)
-
 type ImBotClient struct {
-	Address       string
-	AppKey        string
-	Token         string
-	Platform      string
-	TransportMode TransportMode
-	// WebhookURL HTTP+Webhook 模式下，IM 服务向 Bot 推送消息的回调地址。
-	WebhookURL string
+	Address  string
+	AppKey   string
+	Token    string
+	Platform string
 
 	// AutoReconnect 为 true（默认）时，在非主动断开场景下按退避策略自动重连，行为对齐 Android ConnectionManager + IntervalGenerator。
 	AutoReconnect bool
@@ -93,12 +80,12 @@ type ImBotClient struct {
 	totalUnreadCount int
 }
 
-func NewImBotClient(address, appkey string, mode TransportMode) *ImBotClient {
+// NewImBotClient 初始化一个 WebSocket 形态的 Bot 客户端，连接通过 Connect(token) 建立。
+func NewImBotClient(address, appkey string) *ImBotClient {
 	return &ImBotClient{
 		AppKey:          appkey,
 		Address:         address,
 		Platform:        "Bot",
-		TransportMode:   mode,
 		AutoReconnect:   true,
 		accssorCache:    sync.Map{},
 		connAckAccessor: utils.NewDataAccessor(),

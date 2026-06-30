@@ -26,16 +26,13 @@ go get github.com/juggleim/imbot-sdk-go
 ### 1. 创建客户端
 
 ```go
-client := imbotclients.NewImBotClient("ws://127.0.0.1:9002", "your-appkey", imbotclients.TransportMode_WebSocket)
+client := imbotclients.NewImBotClient("ws://127.0.0.1:9002", "your-appkey")
 ```
 
 说明：
 
-- 第三个参数 `mode` 指定通信方式：
-  - `TransportMode_WebSocket`：WebSocket 长连接（当前已实现）
-  - `TransportMode_HTTPWebhook`：HTTP 短连接 + Webhook 回调（尚未实现，调用 `Connect` 会返回 `ClientErrorCode_UnsupportedTransport`）
+- `NewImBotClient` 初始化的是 WebSocket 形态客户端；Webhook 形态见下文 [Webhook 模式](#webhook-模式)
 - `address` 传基础地址即可，SDK 会自动拼接为 `ws://host/imbot` 或 `wss://host/imbot`
-- HTTP+Webhook 模式下需设置 `client.WebhookURL`，供 IM 服务回调推送消息
 - `Platform` 默认是 `Bot`
 - `AutoReconnect` 默认是 `true`
 
@@ -148,7 +145,7 @@ func main() {
 	token := "your-token"
 	targetUserID := "target-user-id"
 
-	client := imbotclients.NewImBotClient(address, appKey, imbotclients.TransportMode_WebSocket)
+	client := imbotclients.NewImBotClient(address, appKey)
 	client.AddConnectionStatusChangeListener(connListener{})
 	client.AddMessageListener(messageListener{})
 
@@ -280,6 +277,29 @@ SDK 当前内置了这些消息内容模型，位于 `models/messages`：
 - `GetFileCred(req)`
 
 说明：当前 SDK 提供的是文件凭证查询能力，文件上传/下载流程需要由业务侧结合存储服务自行处理。
+
+## Webhook 模式
+
+除了 WebSocket 长连接，SDK 还支持 HTTP + Webhook 模式：主动能力（发消息、查用户、配置回调）通过 HTTP 调用服务端 `botapigateway`，被动接收消息由 SDK 内置的 HTTP server 接收 IM 服务推送的回调。
+
+WebSocket 与 Webhook 两种实现分别位于 `imbotclients/` 与 `webhookclients/` 两个独立目录，互不依赖。Webhook 形态用 `webhookclients.NewImBotWebhookClient` 初始化，直接传入 `baseURL`、`appKey`、`token`，无需调用 `Connect`。
+
+```go
+c := webhookclients.NewImBotWebhookClient("http://127.0.0.1:8080", "your-appkey", "your-token")
+c.ApiKey = "your-webhook-apikey" // 校验回调请求头 Authorization: Bearer <ApiKey>
+
+code, self := c.QryUserInfo("")            // 查询 Bot 自身资料
+c.SetWebhook("http://your-bot-host:9000/callback", c.ApiKey, false) // 配置对外回调地址
+
+c.AddMessageListener(inboundListener{})    // webhookclients.IInboundMessageListener
+go c.StartReceiver(":9000", "/callback")   // 或用 c.Handler() 挂到已有 mux
+
+code, ack := c.SendMessage(conversation, upMsg) // 与 WebSocket 端相同的 (conversation, *pbobjs.UpMsg)
+```
+
+webhook 模式可用的网关接口：`SendMessage`、`QryUserInfo`、`SetWebhook`、`GetWebhook`、`DelWebhook`。
+
+> 注意：回调载荷不包含群会话 id（`receiver` 为 Bot 自身），解码出的 `Conversation` 取消息发送方，适用于单聊回复；群聊回复请在调用 `SendMessage` 时显式指定群会话。
 
 ## 使用注意事项
 

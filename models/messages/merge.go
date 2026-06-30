@@ -46,7 +46,7 @@ func (msg *MergeMessage) Encode() ([]byte, error) {
 		Extra:          msg.Extra,
 	}
 	if msg.Conversation != nil {
-		dto.ConversationId = msg.Conversation.Conversation
+		dto.ConversationId = msg.Conversation.ConversationId
 		dto.ConversationType = int32(msg.Conversation.ConversationType)
 		dto.SubChannel = msg.Conversation.SubChannel
 	}
@@ -74,7 +74,7 @@ func (msg *MergeMessage) Decode(data []byte) error {
 	msg.Extra = dto.Extra
 	if dto.ConversationId != "" {
 		msg.Conversation = &models.Conversation{
-			Conversation:     dto.ConversationId,
+			ConversationId:   dto.ConversationId,
 			ConversationType: pbobjs.ChannelType(dto.ConversationType),
 			SubChannel:       dto.SubChannel,
 		}

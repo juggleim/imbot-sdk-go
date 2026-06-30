@@ -9,9 +9,9 @@ import (
 )
 
 // SendMessage 按会话类型选择 topic 并 Publish（p_msg / g_msg / c_msg / pc_msg），
-// 与 Android PBData.sendMessageData 一致；targetId 为 conver.Conversation；UpMsg 中的 SubChannel 等由调用方填入。
+// 与 Android PBData.sendMessageData 一致；targetId 为 conver.ConversationId；UpMsg 中的 SubChannel 等由调用方填入。
 func (client *ImBotClient) SendMessage(conver *models.Conversation, upMsg *pbobjs.UpMsg) (utils.ClientErrorCode, *pbobjs.PublishAckMsgBody) {
-	if conver == nil || upMsg == nil || conver.Conversation == "" {
+	if conver == nil || upMsg == nil || conver.ConversationId == "" {
 		return utils.ClientErrorCode_Unknown, nil
 	}
 	var topic string
@@ -31,7 +31,7 @@ func (client *ImBotClient) SendMessage(conver *models.Conversation, upMsg *pbobj
 	if err != nil {
 		return utils.ClientErrorCode_Unknown, nil
 	}
-	return client.Publish(topic, conver.Conversation, data)
+	return client.Publish(topic, conver.ConversationId, data)
 }
 
 type IMessageListener interface {
@@ -187,39 +187,7 @@ func (client *ImBotClient) downMsgToMessage(downMsg *pbobjs.DownMsg) *models.Mes
 }
 
 func decodeMessageContent(msgType string, data []byte) models.MessageContentInterface {
-	var content models.MessageContentInterface
-	switch msgType {
-	case messages.MessageContentTypeText:
-		content = messages.NewTextMessage("")
-	case messages.MessageContentTypeImage:
-		content = messages.NewImageMessage()
-	case messages.MessageContentTypeFile:
-		content = messages.NewFileMessage()
-	case messages.MessageContentTypeVideo:
-		content = messages.NewVideoMessage()
-	case messages.MessageContentTypeVoice:
-		content = messages.NewVoiceMessage()
-	case messages.MessageContentTypeStreamText:
-		content = messages.NewStreamTextMessage()
-	case messages.MessageContentTypeRecallInfo:
-		content = messages.NewRecallInfoMessage()
-	case messages.MessageContentTypeMerge:
-		content = messages.NewMergeMessage("", nil, nil, nil)
-	case messages.MessageContentTypeThumbnailPackedImage:
-		content = messages.NewThumbnailPackedImageMessage()
-	case messages.MessageContentTypeSnapshotPackedVideo:
-		content = messages.NewSnapshotPackedVideoMessage()
-	default:
-		unknown := messages.NewUnknownMessage(msgType)
-		unknown.Content = string(data)
-		return unknown
-	}
-	if err := content.Decode(data); err != nil {
-		unknown := messages.NewUnknownMessage(msgType)
-		unknown.Content = string(data)
-		return unknown
-	}
-	return content
+	return messages.DecodeContent(msgType, data)
 }
 
 func conversationFromDownMsg(downMsg *pbobjs.DownMsg) *models.Conversation {
@@ -227,7 +195,7 @@ func conversationFromDownMsg(downMsg *pbobjs.DownMsg) *models.Conversation {
 		return nil
 	}
 	return &models.Conversation{
-		Conversation:     downMsg.TargetId,
+		ConversationId:   downMsg.TargetId,
 		ConversationType: downMsg.ChannelType,
 		SubChannel:       downMsg.SubChannel,
 	}

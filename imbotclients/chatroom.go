@@ -42,7 +42,7 @@ func (client *ImBotClient) QuitChatroom(chatroomId string) utils.ClientErrorCode
 func (client *ImBotClient) SendChatroomMsg(chatroomId string, upMsg *pbobjs.UpMsg) (utils.ClientErrorCode, *pbobjs.PublishAckMsgBody) {
 	return client.SendMessage(&models.Conversation{
 		ConversationType: pbobjs.ChannelType_Chatroom,
-		Conversation:     chatroomId,
+		ConversationId:   chatroomId,
 	}, upMsg)
 }
 
